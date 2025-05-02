@@ -1,14 +1,7 @@
 import Link from "next/link"
-import dynamic from "next/dynamic"
-import { Suspense } from "react"
 import { DashboardHeader } from "@/components/dashboard-header"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-
-// Dynamically import the client component with suspense
-const ContactForm = dynamic(() => import("@/components/contact-form-wrapper").then(mod => mod.ContactFormWrapper), {
-  ssr: false, // Disable server-side rendering for this component
-  loading: () => <div className="p-4 text-center">Loading form...</div>
-})
+import { ContactPageClient } from "@/components/contact-page-client"
 
 export default function ContactPage() {
   return (
@@ -24,15 +17,7 @@ export default function ContactPage() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Send us a message</CardTitle>
-                <CardDescription>Fill out the form below to get in touch with our team</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ContactForm />
-              </CardContent>
-            </Card>
+            <ContactPageClient />
 
             <Card>
               <CardHeader>
